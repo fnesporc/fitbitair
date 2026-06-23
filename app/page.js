@@ -1,4 +1,4 @@
-import { isLoggedIn } from "../lib/fitbit";
+import { isLoggedIn } from "../lib/google-health";
 import Dashboard from "./dashboard";
 
 export const dynamic = "force-dynamic";

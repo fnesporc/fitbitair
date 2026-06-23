@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-import { clearTokens } from "../../../../lib/fitbit";
+import { clearTokens } from "../../../../lib/google-health";
 
 export const dynamic = "force-dynamic";
 

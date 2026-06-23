@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-import { buildAuthorizeUrl } from "../../../../lib/fitbit";
+import { buildAuthorizeUrl } from "../../../../lib/google-health";
 
 export const dynamic = "force-dynamic";
 

@@ -36,24 +36,22 @@ export default function Dashboard() {
 
   return (
     <div style={{ marginTop: 20 }}>
-      {data.name ? (
-        <p style={{ opacity: 0.7 }}>Ciao {data.name} 👋</p>
-      ) : null}
-      <div
+      {/* Primo collegamento: mostriamo il JSON grezzo per vedere la forma
+          reale dei dati. Poi sostituiamo con le Card sui campi che vuoi. */}
+      <pre
         style={{
-          display: "grid",
-          gridTemplateColumns: "1fr 1fr",
-          gap: 12,
-          marginTop: 8,
+          background: "rgba(0,0,0,0.3)",
+          borderRadius: 12,
+          padding: 14,
+          fontSize: 12,
+          overflowX: "auto",
+          whiteSpace: "pre-wrap",
         }}
       >
-        <Card label="Passi" value={data.steps.toLocaleString("it-IT")} />
-        <Card label="Calorie" value={data.caloriesOut.toLocaleString("it-IT")} unit="kcal" />
-        <Card label="Distanza" value={data.distanceKm} unit="km" />
-        <Card label="Minuti attivi" value={data.activeMinutes} unit="min" />
-      </div>
+        {JSON.stringify(data, null, 2)}
+      </pre>
 
-      <a
+      <
         href="/api/auth/logout"
         style={{
           display: "inline-block",

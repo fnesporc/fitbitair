@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-import { exchangeCodeForTokens, saveTokens } from "../../../../lib/fitbit";
+import { exchangeCodeForTokens, saveTokens } from "../../../../lib/google-health";
 
 export const dynamic = "force-dynamic";
 
