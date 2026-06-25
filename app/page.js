@@ -7,28 +7,29 @@ export default function Home() {
   const logged = isLoggedIn();
 
   return (
-    <main style={{ maxWidth: 480, margin: "0 auto", padding: "32px 20px" }}>
-      <h1 style={{ fontSize: 28, marginBottom: 4 }}>Fitbit Air</h1>
-      <p style={{ opacity: 0.6, marginTop: 0 }}>I miei dati di oggi</p>
+    <main className="wrap">
+      <div className="app-head">
+        <div>
+          <h1 className="app-title">Pulse</h1>
+          <div className="app-sub">i tuoi dati, resi utili</div>
+        </div>
+      </div>
 
       {logged ? (
         <Dashboard />
       ) : (
-        <a
-          href="/api/auth/login"
-          style={{
-            display: "inline-block",
-            marginTop: 24,
-            padding: "12px 20px",
-            borderRadius: 12,
-            background: "#22d3ee",
-            color: "#0f172a",
-            fontWeight: 600,
-            textDecoration: "none",
-          }}
-        >
-          Collega il mio Fitbit
-        </a>
+        <div>
+          <div className="hero">
+            <div className="hero-eyebrow">Benvenuto</div>
+            <p className="hero-headline">
+              Trasforma i dati del tuo <b>Fitbit Air</b> in insight chiari per
+              ogni giorno.
+            </p>
+          </div>
+          <a href="/api/auth/login" className="cta">
+            Collega il mio Fitbit →
+          </a>
+        </div>
       )}
     </main>
   );
