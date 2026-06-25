@@ -248,3 +248,75 @@ body {
   font-weight: 750;
   text-decoration: none;
 }
+
+/* Top row: serie + obiettivo */
+.toprow {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  margin-bottom: 18px;
+}
+.streak-card {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.streak-flame { font-size: 30px; }
+.streak-num { font-size: 24px; font-weight: 800; line-height: 1; }
+.streak-lbl { font-size: 11px; color: var(--muted); }
+
+.ring-wrap { display: flex; align-items: center; gap: 12px; }
+.ring { position: relative; width: 56px; height: 56px; flex-shrink: 0; }
+.ring svg { transform: rotate(-90deg); }
+.ring-txt {
+  position: absolute; inset: 0; display: grid; place-items: center;
+  font-size: 13px; font-weight: 800;
+}
+.goal-lbl { font-size: 11px; color: var(--muted); }
+.goal-val { font-size: 14px; font-weight: 700; }
+
+/* Insight list */
+.insight {
+  display: flex;
+  gap: 10px;
+  align-items: flex-start;
+  padding: 12px 14px;
+  border-radius: 14px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  margin-bottom: 8px;
+}
+.insight-icon { font-size: 18px; line-height: 1.3; }
+.insight-text { font-size: 13.5px; line-height: 1.4; }
+
+/* Activity detail (expand) */
+.act { cursor: pointer; }
+.act-detail {
+  margin-top: 12px;
+  padding-top: 12px;
+  border-top: 1px solid var(--border);
+}
+.zones { display: flex; gap: 4px; height: 8px; border-radius: 5px; overflow: hidden; margin: 8px 0; }
+.zone-legend { display: flex; flex-wrap: wrap; gap: 10px; font-size: 11px; color: var(--muted); }
+.zone-dot { display: inline-block; width: 8px; height: 8px; border-radius: 50%; margin-right: 4px; vertical-align: 1px; }
+
+/* Theme toggle */
+.theme-btn {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  color: var(--text);
+  border-radius: 10px;
+  width: 36px; height: 36px;
+  font-size: 16px;
+}
+
+/* Light mode */
+body.light {
+  --bg-0: #eef2f8;
+  --bg-1: #dde4f0;
+  --surface: rgba(15, 23, 42, 0.04);
+  --surface-2: rgba(15, 23, 42, 0.07);
+  --border: rgba(15, 23, 42, 0.1);
+  --text: #15233b;
+  --muted: #5b6b85;
+}
