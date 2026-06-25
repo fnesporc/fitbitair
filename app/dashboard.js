@@ -51,7 +51,7 @@ export default function Dashboard() {
         {JSON.stringify(data, null, 2)}
       </pre>
 
-      <
+      <a
         href="/api/auth/logout"
         style={{
           display: "inline-block",
