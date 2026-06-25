@@ -66,6 +66,60 @@ function WeekBars({ days }) {
 }
 
 const ZONE_COLORS = { light: "#6ea8fe", moderate: "#38e0d0", vigorous: "#fbbf24", peak: "#fb7185" };
+const SLEEP_COLORS = { DEEP: "#4338ca", LIGHT: "#6ea8fe", REM: "#a78bfa", AWAKE: "#64748b" };
+
+function Today({ today }) {
+  if (!today) return null;
+  const { steps, stepsGoal, restingHr, restingHrAvg, sleep } = today;
+  const stepPct = stepsGoal ? Math.min(100, Math.round((steps / stepsGoal) * 100)) : 0;
+  const sh = sleep ? Math.floor(sleep.asleep / 60) : 0;
+  const sm = sleep ? sleep.asleep % 60 : 0;
+  const sleepTotal = sleep ? Object.values(sleep.stages).reduce((a, b) => a + b, 0) : 0;
+  const rhrDelta = restingHr && restingHrAvg ? restingHr - restingHrAvg : null;
+
+  return (
+    <>
+      <div className="section-label">Oggi</div>
+      <div className="today">
+        <div className="today-cell">
+          <div>
+            <span className="today-big">{steps >= 1000 ? `${(steps / 1000).toFixed(1)}k` : steps}</span>
+          </div>
+          <div className="today-lbl">passi</div>
+          <div className="today-sub" style={{ color: stepPct >= 100 ? "var(--up)" : "var(--muted)" }}>
+            {stepPct}% di {stepsGoal / 1000}k
+          </div>
+        </div>
+
+        <div className="today-cell">
+          {sleep ? (
+            <>
+              <div><span className="today-big">{sh}</span><span className="today-unit">h</span> <span className="today-big">{sm}</span><span className="today-unit">m</span></div>
+              <div className="today-lbl">sonno</div>
+              <div className="sleep-bar">
+                {["DEEP", "REM", "LIGHT", "AWAKE"].map((k) =>
+                  sleep.stages[k] ? <div key={k} style={{ flex: sleep.stages[k], background: SLEEP_COLORS[k] }} title={`${k} ${sleep.stages[k]}m`} /> : null
+                )}
+              </div>
+            </>
+          ) : (
+            <><div className="today-big">—</div><div className="today-lbl">sonno</div></>
+          )}
+        </div>
+
+        <div className="today-cell">
+          <div><span className="today-big">{restingHr ?? "—"}</span> <span className="today-unit">bpm</span></div>
+          <div className="today-lbl">a riposo</div>
+          {rhrDelta != null ? (
+            <div className="today-sub" style={{ color: rhrDelta <= 0 ? "var(--up)" : "var(--down)" }}>
+              {rhrDelta === 0 ? "= media" : `${rhrDelta > 0 ? "+" : ""}${rhrDelta} vs media`}
+            </div>
+          ) : null}
+        </div>
+      </div>
+    </>
+  );
+}
 
 function Activity({ a }) {
   const [open, setOpen] = useState(false);
@@ -171,6 +225,9 @@ export default function Dashboard() {
         <div className="hero-eyebrow">Insight della settimana</div>
         <p className="hero-headline">{data.headline}</p>
       </div>
+
+      {/* Oggi */}
+      <Today today={data.today} />
 
       {/* Serie + Obiettivo */}
       <div className="toprow">
